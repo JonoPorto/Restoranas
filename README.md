@@ -70,3 +70,12 @@ group by customer.name
 order by sum(quantity * price) desc)customer); 
 ```
 Kiek pinigų yra išleidęs kiekvienas klientas? Parodyti kliento vardą, telefono numerį, išleistą sumą. Išrikiuoti nuo mažiausio iki didžiausio.
+```sql
+select customer.name, customer.phone, sum(quantity * price) 'kiek is viso pinigu isleista?' 
+from customer 
+join orders on customer.id = orders.customer_id 
+join order_items on orders.invoice_nr = order_items.invoice_nr 
+join meal on order_items.meal_id = meal.id 
+group by customer.name 
+order by sum(quantity * price) asc
+```
